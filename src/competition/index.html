@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Soccer24 | Home</title>
+    <title>Soccer24 | Competition</title>
     <link rel="stylesheet" href="/css/style.css" />
+    <script src="../js/competition.js" type="module"></script>
   </head>
   <body>
     <header class="divider"> 
@@ -12,7 +13,7 @@
         <div class="grad-bar"></div>
         <nav class="navbar">
           <img src="/images/soccer-ball.svg" alt="soccer stadium logo">
-          <a href="index.html"> Soccer<span class="highlight">24</span></a>
+          <a href="../index.html"> Soccer<span class="highlight">24</span></a>
           <div class="menu-toggle" id="mobile-menu">
             <span class="bar"></span>
             <span class="bar"></span>
@@ -20,7 +21,7 @@
           </div>  
           <ul class="nav no-search">
             <li class="nav-item"><a href="#">Matches</a></li>
-            <li class="nav-item"><a href="/competition/index.html">Competitions</a></li>
+            <li class="nav-item"><a href="">Competitions</a></li>
             <li class="nav-item"><a href="#">Teams</a></li>
             <li class="nav-item"><a href="#">Players</a></li>
             <li class="nav-item"><a href="#">Contact Us</a></li>
@@ -32,16 +33,24 @@
     </header>
     <main class="divider">
       <section class="mission">
-        <p>We spend too much time these days indoors...sitting usually.</p>
-        <p>No wonder we are a mess!</p>
-        <p>
-          What we really need is to get outside...in fact SLEEP outside. Our
-          mission is to provide you with everything you need to do this
-          comfortably at an affordable price.
-        </p>
-      </section>
-      <section class="products">
-        <h2>Top Products</h2>
+        <section class="products">
+          <label for="search-by-country">Country
+          <select name="search" id="search-by-country">
+            <option value="Spain">Spain</option>
+            <option value="England">England</option>
+            <option value="Italy">Italy</option>
+            <option value="Germany">Germany</option>
+            <option value="Portugal">Portugal</option>
+            <option value="United States">United States</option>
+            <option value="Mexico">Mexico</option>
+            <option value="Brazil">Brazil</option>
+            <option value="Argentina">Argentina</option>
+            <option value="Colombia">Colombia</option>
+            <option value="Bolivia">Bolivia</option>
+          </select>
+        </label>
+          <ul class="product-list"></ul>
+        </section>
       </section>
     </main>
     <footer>&copy;NOT a real business</footer>
