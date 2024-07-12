@@ -4,7 +4,7 @@ function leagueCardTemplate(league) {
   let htmlString = "";
   if (league.strBadge) {
     htmlString = `<li class="league-card">
-      <a href="/league_pages/index.html?product=${league.idLeague}">
+      <a href="/league_pages/index.html?league=${league.idLeague}">
         <img src="${league.strBadge}" alt="Image of ${league.strLeague}">
         <h2 class="league__name">${league.strLeague}</h2>
         <h3 class="card__brand">${league.strCurrentSeason}</h3>

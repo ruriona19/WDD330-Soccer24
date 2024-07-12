@@ -16,7 +16,7 @@ async function getLeaguesByCountry(allLeagues, country) {
 }
 
 async function initialize() {
-    const listElement = document.querySelector(".product-list");
+    const listElement = document.querySelector(".league-list");
     const dataSource = new ExternalServices();
     const allSoccerLeagues = await dataSource.getLeaguesBySport('Soccer');
     const soccerLeaguesByCountry = await getLeaguesByCountry(allSoccerLeagues, 'Spain');
