@@ -57,16 +57,16 @@ img {
 .grad-bar {
   width: 100%;
   height: 5px;
-  background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
-    -webkit-animation: gradbar 15s ease infinite;
+  -webkit-animation: gradbar 15s ease infinite;
   -moz-animation: gradbar 15s ease infinite;
   animation: gradbar 15s ease infinite;
 }
 
 .navbar {
   display: grid;
-  grid-template-columns: .25fr .25fr 3fr;
+  grid-template-columns: 0.25fr 0.25fr 3fr;
   align-items: center;
   height: 60px;
   overflow: hidden;
@@ -87,10 +87,9 @@ img {
 }
 
 .navbar ul {
-
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(6,1fr);
+  grid-template-columns: repeat(6, 1fr);
   justify-self: end;
 }
 
@@ -117,7 +116,8 @@ img {
   width: 100%;
   height: 50vh;
   min-height: 350px;
-  background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1435224668334-0f82ec57b605?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDd8fHxlbnwwfHx8fA%3D%3D&w=1000&q=80');
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)),
+    url("https://images.unsplash.com/photo-1435224668334-0f82ec57b605?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDd8fHxlbnwwfHx8fA%3D%3D&w=1000&q=80");
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -200,7 +200,7 @@ input {
 
 /* MOBILE MENU & ANIMATION */
 
-.menu-toggle .bar{
+.menu-toggle .bar {
   width: 25px;
   height: 3px;
   background-color: #3f3f3f;
@@ -216,22 +216,22 @@ input {
   display: none;
 }
 
-.menu-toggle:hover{
+.menu-toggle:hover {
   cursor: pointer;
 }
 
-#mobile-menu.is-active .bar:nth-child(2){
+#mobile-menu.is-active .bar:nth-child(2) {
   opacity: 0;
 }
 
-#mobile-menu.is-active .bar:nth-child(1){
+#mobile-menu.is-active .bar:nth-child(1) {
   -webkit-transform: translateY(8px) rotate(45deg);
   -ms-transform: translateY(8px) rotate(45deg);
   -o-transform: translateY(8px) rotate(45deg);
   transform: translateY(8px) rotate(45deg);
 }
 
-#mobile-menu.is-active .bar:nth-child(3){
+#mobile-menu.is-active .bar:nth-child(3) {
   -webkit-transform: translateY(-8px) rotate(-45deg);
   -ms-transform: translateY(-8px) rotate(-45deg);
   -o-transform: translateY(-8px) rotate(-45deg);
@@ -242,66 +242,66 @@ input {
 
 @-webkit-keyframes gradbar {
   0% {
-    background-position: 0% 50%
+    background-position: 0% 50%;
   }
   50% {
-    background-position: 100% 50%
+    background-position: 100% 50%;
   }
   100% {
-    background-position: 0% 50%
+    background-position: 0% 50%;
   }
 }
 
 @-moz-keyframes gradbar {
   0% {
-    background-position: 0% 50%
+    background-position: 0% 50%;
   }
   50% {
-    background-position: 100% 50%
+    background-position: 100% 50%;
   }
   100% {
-    background-position: 0% 50%
+    background-position: 0% 50%;
   }
 }
 
 @keyframes gradbar {
   0% {
-    background-position: 0% 50%
+    background-position: 0% 50%;
   }
   50% {
-    background-position: 100% 50%
+    background-position: 100% 50%;
   }
   100% {
-    background-position: 0% 50%
+    background-position: 0% 50%;
   }
 }
 
 /* Media Queries */
 
-  /* Mobile Devices - Phones/Tablets */
+/* Mobile Devices - Phones/Tablets */
 
-@media only screen and (max-width: 720px) { 
+@media only screen and (max-width: 720px) {
   .features {
     flex-direction: column;
     padding: 50px;
   }
-  
+
   /* MOBILE HEADINGS */
-  
+
   h1 {
     font-size: 1.9rem;
   }
-  
+
   h2 {
     font-size: 1rem;
   }
-  
+
   p {
     font-size: 0.8rem;
   }
-  
+
   /* MOBILE NAVIGATION */
-     
+
   .navbar ul {
     display: flex;
     flex-direction: column;
@@ -315,61 +315,59 @@ input {
     text-align: center;
     overflow: hidden;
   }
-  
+
   .navbar li {
     padding: 15px;
   }
-  
+
   .navbar li:first-child {
     margin-top: 50px;
   }
-  
+
   .navbar li a {
     font-size: 1rem;
   }
-   
-  .menu-toggle, .bar {
+
+  .menu-toggle,
+  .bar {
     display: block;
     cursor: pointer;
   }
-  
+
   .mobile-nav {
-  transform: translate(0%)!important;
-}
-  
+    transform: translate(0%) !important;
+  }
+
   /* SECTIONS */
-  
+
   .headline {
     height: 20vh;
   }
-    
+
   .feature-container p {
     margin-bottom: 25px;
   }
-  
+
   .feature-container {
     margin-top: 20px;
   }
-  
+
   .feature-container:nth-child(2) {
     order: -1;
   }
-  
+
   /* SEARCH DISABLED ON MOBILE */
-  
+
   #search-icon {
     display: none;
   }
-  
+
   .search-input {
-  display: none;
- }
-  
+    display: none;
+  }
 }
 
-
 /*-------------------*/
-
 
 .logo {
   position: absolute;
@@ -443,7 +441,6 @@ button {
 .products {
   padding: 0.5em;
   max-width: 1000px;
-
 }
 .league-list {
   display: flex;
@@ -483,9 +480,8 @@ button {
 }
 
 .card__brand {
-  font-size: .7em;
+  font-size: 0.7em;
 }
-
 
 /* End product list card */
 /* League Details Page*/
@@ -504,7 +500,7 @@ button {
 }
 
 .navbar-sub-menu {
-  grid-template-columns: .25fr .25fr 3fr;
+  grid-template-columns: 0.25fr 0.25fr 3fr;
   align-items: center;
   height: 60px;
   overflow: hidden;
@@ -513,12 +509,12 @@ button {
 .navbar-sub-menu ul {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
   justify-self: end;
 }
 
 .league__name {
-  font-size: .8em;
+  font-size: 0.8em;
 }
 
 #league-name {
@@ -544,7 +540,7 @@ button {
 }
 
 #current-season-title {
-  font-size: .6em;
+  font-size: 0.6em;
 }
 
 #current-season {
@@ -594,7 +590,7 @@ button {
 
 .horizontal-alignment {
   display: flex;
-  font-size: .8em;
+  font-size: 0.8em;
 }
 
 .highlight-text {
