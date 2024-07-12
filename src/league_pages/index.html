@@ -40,12 +40,38 @@
 
     <main class="divider">
       <section class="league-detail">
-        <h3 id="product_name"></h3>
+        <section class="sub-header">
+          <nav class="navbar-sub-menu">
+            <ul class="nav no-search">
+              <li class="nav-item"><a href="#">Matches</a></li>
+              <li class="nav-item"><a href="#">Table</a></li>
+              <li class="nav-item"><a href="#">Teams</a></li>
+            </ul>
+          </nav>
+        </section>
+        <div id="league-info">
+          <h3 id="league-name"></h3>
+          <p class="info-text" id="current-season"></p>
+          <p class="info-text" id="current-season-title">
+            <span class="highlight-text">Current Season</span>
+          <p>
+          <div class="horizontal-alignment">
+            <p class="info-text">Former Year:</p>
+            <p class="info-text" id="former-year"></p>
+          </div>
+          <div class="horizontal-alignment">
+            <p class="info-text">Country:</p>
+            <p class="info-text" id="country"></p>
+          </div>
+        </div>
         <img class="divider" id="logo" />
         <img class="divider" id="banner" />
         <img class="divider" id="poster" />
         <img class="divider" id="trophy" />
         <img class="divider" id="fanart1" />
+        <img class="divider" id="fanart2" />
+        <img class="divider" id="fanart3" />
+        <img class="divider" id="fanart4" />
         <p class="product__description"></p>
       </section>
     </main>
