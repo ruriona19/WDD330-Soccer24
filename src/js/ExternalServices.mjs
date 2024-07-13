@@ -17,7 +17,7 @@ async function convertToJson(res) {
 export default class ExternalServices {
   async getLeaguesBySport(sport) {
     try {
-      const response = await fetch("https://www.thesportsdb.com/api/v2/json/3/all/leagues");
+      const response = await fetch(baseURL + "all/leagues");
   
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -35,12 +35,24 @@ export default class ExternalServices {
 
   async getLeagueById(leagueId) {
     try {
-      const response = await fetch(`https://www.thesportsdb.com/api/v2/json/3/lookup/league/${leagueId}`);
+      const response = await fetch(baseURL + `lookup/league/${leagueId}`);
       const leagueData = await convertToJson(response);
       return leagueData.leagues[0];
 
     } catch (error) {
       console.error("Unable to fetch leagueData:", error);
+      throw error; 
+    }
+  }
+
+  async getSchedualByLeagueIdAndSeason(leagueId, season) {
+    try {
+      const response = await fetch(baseURL + `schedual/league/${leagueId}/${season}`);
+      const nextSchedualData = await convertToJson(response);
+      return nextSchedualData;
+
+    } catch (error) {
+      console.error("Unable to fetch nextSchedualData:", error);
       throw error; 
     }
   }
