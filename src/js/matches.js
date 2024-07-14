@@ -1,4 +1,4 @@
-import { getParam } from "./utils.mjs";
+import { getParam, setLocalStorage } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 import ScheduleList from "./ScheduleList.mjs";
 
@@ -10,11 +10,33 @@ document.addEventListener("DOMContentLoaded", async () => {
   const leagueId = getParam("league");
   const season = getParam("season");
   const dataSource = new ExternalServices();
-  const seasonSchedualData = await dataSource.getSchedualByLeagueIdAndSeason(
+  const scheduleDataByRound = await dataSource.getScheduleByRound(
     leagueId,
     season,
   );
+  const numberOfRoundsBySeason = await dataSource.getNumberOfRoundsBySeason(
+    leagueId,
+    season,
+  );
+  setLocalStorage("rounds-by-season", numberOfRoundsBySeason);
 
-  const scheduleList = new ScheduleList(leagueId, season, seasonSchedualData);
+  const scheduleList = new ScheduleList(leagueId, season, scheduleDataByRound);
+  await scheduleList.init();
+});
+
+const matchdaySelect = document.querySelector("#select-matchday");
+
+matchdaySelect.addEventListener("input", async (e) => {
+  const leagueId = getParam("league");
+  const season = getParam("season");
+  const round = e.target.value;
+  const dataSource = new ExternalServices();
+  const newScheduleData = await dataSource.getScheduleByRound(
+    leagueId,
+    season,
+    round,
+  );
+
+  const scheduleList = new ScheduleList(leagueId, season, newScheduleData);
   await scheduleList.init();
 });
