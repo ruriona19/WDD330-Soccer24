@@ -50,5 +50,6 @@ export default class LeagueDetails {
 
   init() {
     this.renderLeagueDetails();
+    localStorage.setItem("firstLoad", false);
   }
 }

@@ -29,12 +29,12 @@ function matchdaySelectOptionTemplate(round) {
 function matchCardTemplate(match) {
 
   let marker;
-  if (match.strTimeLocal == null) {
+  if (match.strTime == null) {
     marker = "00:00"
   } else if(match.strStatus === "Match Finished"){
     marker = `${match.intHomeScore}-${match.intAwayScore}`;
   } else {
-    marker = match.strTimeLocal.slice(0, -3);
+    marker = match.strTime.slice(0, -3);
   }
 
   let htmlString = "";
@@ -88,23 +88,29 @@ export default class ScheduleList {
   }
 
   renderScheduleList() {
+    const firstLoad = localStorage.getItem("firstLoad");
+    const currentRound = localStorage.getItem("current-round");
+
     const subMenu = document.querySelector(".navbar-sub-menu");
     const scheduleTitle = document.querySelector("#schedule-title > h4");
     const roundText = document.querySelector(".panel-head > h5");
     const panelBody = document.querySelector(".panel-body");
     const matchdaySelect = document.getElementById("select-matchday");
-
     const currentScheduleTitle = `${this.leagueData["strLeague"]} ${this.season} season`;
-    const roundValue = "ROUND 1";
 
-    subMenu.innerHTML = navSubMenuTemplate(this.leagueId, this.season);
-    scheduleTitle.innerHTML = currentScheduleTitle;
-    roundText.innerHTML = roundValue;
+    if (firstLoad === "false"){
+      subMenu.innerHTML = navSubMenuTemplate(this.leagueId, this.season);
+      scheduleTitle.innerHTML = currentScheduleTitle;
+      roundText.innerHTML = "ROUND 1";
 
-    let rounds = createArrayOfRoundsBySeason(this.roundsBySeason);
+      let rounds = createArrayOfRoundsBySeason(this.roundsBySeason);
 
-    // render list of options
-    renderListWithTemplate(matchdaySelectOptionTemplate, matchdaySelect, rounds);
+      // render list of options
+      renderListWithTemplate(matchdaySelectOptionTemplate, matchdaySelect, rounds);
+    } else {
+      roundText.innerHTML = `ROUND ${currentRound}`;
+    }
+    
 
     // render list of matches
     renderListWithTemplate(matchCardTemplate, panelBody, this.scheduleList);
