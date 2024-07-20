@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Soccer24 | Matches</title>
+    <title>Soccer24 | Teams</title>
     <link rel="stylesheet" href="/css/style.css" />
-    <script src="../js/matches.js" type="module"></script>
+    <script src="../js/teams.js" type="module"></script>
   </head>
   <body>
     <header class="divider">
@@ -34,15 +34,12 @@
           <h4></h4>
         </div>
         <div class="panel">
-          <div class="panel-head">
-            <h5></h5>
-            <select
-              class="select-control"
-              name="select-matchday"
-              id="select-matchday"
-            ></select>
+          <div class="team-panel-head">
+            <!-- rendered dinamically -->
           </div>
-          <div class="panel-body"></div>
+          <div class="panel-body">
+            <ul class="item-list"></ul>
+          </div>
         </div>
       </section>
     </main>

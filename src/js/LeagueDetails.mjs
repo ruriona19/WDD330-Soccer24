@@ -2,10 +2,10 @@ function navSubMenuTemplate(leagueId, season) {
   let htmlString = "";
     htmlString = `<ul class="nav no-search">
               <li class="nav-item">
-                <a href="/matches/index.html?league=${leagueId}&season=${season}">Matches</a>
+                <a id="matches-link" href="/matches/index.html?league=${leagueId}&season=${season}">Matches</a>
               </li>
               <li class="nav-item"><a href="#">Table</a></li>
-              <li class="nav-item"><a href="#">Teams</a></li>
+              <li class="nav-item"><a href="/teams/index.html?league=${leagueId}&season=${season}">Teams</a></li>
             </ul>`;
   return htmlString;
 }
