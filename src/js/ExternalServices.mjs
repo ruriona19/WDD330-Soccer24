@@ -90,4 +90,16 @@ export default class ExternalServices {
       throw error; 
     }
   }
+
+  async getTeamDetailsByTeamId(teamId) {
+    try {
+      const response = await fetch(baseURLV2 + `lookup/team/${teamId}`);
+      const teamDetailsData = await convertToJson(response);
+      return teamDetailsData.teams[0];
+
+    } catch (error) {
+      console.error("Unable to fetch teamDetailsData:", error);
+      throw error; 
+    }
+  }
 }

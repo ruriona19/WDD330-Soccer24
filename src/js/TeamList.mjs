@@ -30,7 +30,7 @@ function teamCardTemplate(team) {
 
   let htmlString = "";
   htmlString = `<li >
-                <a class="item-box" href="https://www.besoccer.com/team/manchester-city-fc" data-cy="team">
+                <a class="item-box" href="/team_pages/index.html?team=${team.idTeam}" data-cy="team">
                   <img class="team-item-shield" src="${team.strBadge}" alt="${team.strTeam} Badge">
                   <img class="team-item-badge" src="${team.strBanner}" alt="${team.strTeam}">
                   <p class="team-item-name">${team.strTeam}</p>
