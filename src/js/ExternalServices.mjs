@@ -78,4 +78,28 @@ export default class ExternalServices {
       throw error; 
     }
   }
+
+  async getTeamsByLeagueId(leagueId) {
+    try {
+      const response = await fetch(baseURLV2 + `list/teams/${leagueId}`);
+      const leagueData = await convertToJson(response);
+      return leagueData.teams;
+
+    } catch (error) {
+      console.error("Unable to fetch teamsData:", error);
+      throw error; 
+    }
+  }
+
+  async getTeamDetailsByTeamId(teamId) {
+    try {
+      const response = await fetch(baseURLV2 + `lookup/team/${teamId}`);
+      const teamDetailsData = await convertToJson(response);
+      return teamDetailsData.teams[0];
+
+    } catch (error) {
+      console.error("Unable to fetch teamDetailsData:", error);
+      throw error; 
+    }
+  }
 }

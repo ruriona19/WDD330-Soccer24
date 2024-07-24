@@ -10,8 +10,8 @@ async function getLeaguesByCountry(allLeagues, country) {
     }),
   );
 
-  const filteredLeaguesByCountry = allLeaguesDetailedData.filter((league) =>
-    league.strCountry.includes(country),
+  const filteredLeaguesByCountry = allLeaguesDetailedData.filter(
+    (league) => league.strCountry && league.strCountry.includes(country),
   );
 
   return filteredLeaguesByCountry;

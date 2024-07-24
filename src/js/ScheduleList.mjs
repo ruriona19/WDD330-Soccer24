@@ -12,10 +12,10 @@ function navSubMenuTemplate(leagueId, season) {
   let htmlString = "";
     htmlString = `<ul class="nav no-search">
               <li class="nav-item">
-                <a href="/matches/index.html?league=${leagueId}&season=${season}">Matches</a>
+                <a id="matches-link" href="/matches/index.html?league=${leagueId}&season=${season}">Matches</a>
               </li>
               <li class="nav-item"><a href="#">Table</a></li>
-              <li class="nav-item"><a href="#">Teams</a></li>
+              <li class="nav-item"><a href="/teams/index.html?league=${leagueId}&season=${season}">Teams</a></li>
             </ul>`;
   return htmlString;
 }
@@ -86,10 +86,9 @@ export default class ScheduleList {
   async init() {
     this.renderScheduleList();
   }
-
+    
   renderScheduleList() {
-    const firstLoad = localStorage.getItem("firstLoad");
-    const currentRound = localStorage.getItem("current-round");
+    let currentRound = localStorage.getItem("current-round");
 
     const subMenu = document.querySelector(".navbar-sub-menu");
     const scheduleTitle = document.querySelector("#schedule-title > h4");
@@ -98,18 +97,19 @@ export default class ScheduleList {
     const matchdaySelect = document.getElementById("select-matchday");
     const currentScheduleTitle = `${this.leagueData["strLeague"]} ${this.season} season`;
 
-    if (firstLoad === "false"){
-      subMenu.innerHTML = navSubMenuTemplate(this.leagueId, this.season);
-      scheduleTitle.innerHTML = currentScheduleTitle;
+    subMenu.innerHTML = navSubMenuTemplate(this.leagueId, this.season);
+    scheduleTitle.innerHTML = currentScheduleTitle;
+    let rounds = createArrayOfRoundsBySeason(this.roundsBySeason);
+    if (currentRound == null) {
       roundText.innerHTML = "ROUND 1";
-
-      let rounds = createArrayOfRoundsBySeason(this.roundsBySeason);
-
-      // render list of options
-      renderListWithTemplate(matchdaySelectOptionTemplate, matchdaySelect, rounds);
+      currentRound = "1";
     } else {
       roundText.innerHTML = `ROUND ${currentRound}`;
     }
+    // render list of options
+    renderListWithTemplate(matchdaySelectOptionTemplate, matchdaySelect, rounds);
+    matchdaySelect.value = currentRound;
+      
     
 
     // render list of matches
