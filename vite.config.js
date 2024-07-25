@@ -13,7 +13,7 @@ export default defineConfig({
         leaguePages: resolve(__dirname, "src/league_pages/index.html"),
         matches: resolve(__dirname, "src/matches/index.html"),
         teamPages: resolve(__dirname, "src/team_pages/index.html"),
-        teams: resolve(__dirname, "src/teams/index.html")
+        teams: resolve(__dirname, "src/teams/index.html"),
       },
     },
   },

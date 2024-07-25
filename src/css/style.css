@@ -1,10 +1,10 @@
 :root {
-  --font-body: Arial, Helvetica, sans-serif;
+  --font-body: Tahoma, Geneva, Verdana, sans-serif;
   --font-headline: Haettenschweiler, sans-serif;
   /* colors */
-  --primary-color: #f0a868;
-  --secondary-color: #525b0f;
-  --tertiary-color: #a4b8c4;
+  --primary-color: #115220;
+  --secondary-color: #0fb438;
+  --tertiary-color: #e7ffee;
   --light-grey: #d0d0d0;
   --dark-grey: #303030;
 
@@ -20,7 +20,8 @@ body {
   margin: 0;
   font-family: var(--font-body);
   font-size: var(--font-base);
-  color: var(--dark-grey);
+  color: var(--primary-color);
+  background-color: var(--tertiary-color);
 }
 img {
   max-width: 100%;
@@ -70,6 +71,7 @@ img {
   align-items: center;
   height: 60px;
   overflow: hidden;
+  background-color: var(--tertiary-color);
 }
 
 .navbar img {
@@ -397,7 +399,7 @@ input {
 }
 /* utility classes */
 .highlight {
-  color: var(--tertiary-color);
+  color: var(--primary-color);
 }
 
 button {
@@ -413,23 +415,6 @@ button {
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
-/* End utility classes */
-
-/* Cart icon styles */
-/* .cart {
-  padding-top: 1em;
-  position: relative;
-  text-align: center;
-}
-
-.cart svg {
-  width: 25px;
-}
-.cart:hover svg {
-  fill: gray;
-} */
-
-/* End cart icon styles */
 
 .mission {
   padding: 0 0.5em;
@@ -483,7 +468,6 @@ button {
   font-size: 0.7em;
 }
 
-/* End product list card */
 /* League Details Page*/
 
 .league-detail {
@@ -530,10 +514,18 @@ button {
 .league-detail #league-info {
   grid-column: 7/13;
   grid-row: 2/3;
+  padding: 0.3em;
 }
 
 .info-text {
   margin: 0;
+}
+
+.scrollable {
+  max-height: 600px;
+  overflow-y: auto;
+  /* border: 1px solid #ccc; */
+  padding: 0.4em;
 }
 
 #current-season-title {
@@ -548,7 +540,6 @@ button {
   grid-column: 7/13;
   grid-row: 3/5;
   font-size: 0.9em;
-  padding: 0.2em;
 }
 
 .league-detail #logo {
@@ -629,7 +620,7 @@ button {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: #f9f9f9;
+  background-color: var(--primary-color);
   height: 3em;
 }
 
@@ -709,7 +700,7 @@ button {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: #f9f9f9;
+  background-color: var(--primary-color);
   height: 3em;
 }
 
@@ -753,10 +744,6 @@ ul.item-list li {
   text-align: center;
   text-decoration: none;
 }
-/* .image-main .team-box{
-  align-self: flex-start;
-  position: relative;
-} */
 
 @media screen and (min-width: 500px) {
   body {

@@ -1,6 +1,6 @@
 function navSubMenuTemplate(leagueId, season) {
   let htmlString = "";
-    htmlString = `<ul class="nav no-search">
+    htmlString = `<ul class="no-search">
               <li class="nav-item">
                 <a id="matches-link" href="/matches/index.html?league=${leagueId}&season=${season}">Matches</a>
               </li>
