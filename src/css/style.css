@@ -446,6 +446,20 @@ button {
   border: 1px solid var(--light-grey);
   max-width: 200px;
   max-height: 250px;
+  background-color: #52b66b;
+}
+
+.hover-effect {
+  display: inline-block;
+  padding: 20px;
+  margin: 10px;
+  background-color: #4e9c62;
+  border: 1px solid var(--primary-color);
+  transition: transform 0.3s;
+}
+
+.hover-effect:hover {
+  transform: scale(1.1); /* Aumenta el tamaño del elemento */
 }
 
 .league-card a {
@@ -622,6 +636,7 @@ button {
   align-items: center;
   background-color: var(--primary-color);
   height: 3em;
+  color: var(--tertiary-color);
 }
 
 .info-head {
@@ -743,6 +758,7 @@ ul.item-list li {
   margin: 0;
   text-align: center;
   text-decoration: none;
+  color: var(--primary-color);
 }
 
 @media screen and (min-width: 500px) {

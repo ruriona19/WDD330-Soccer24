@@ -3,7 +3,7 @@ import { renderListWithTemplate } from "./utils.mjs";
 function leagueCardTemplate(league) {
   let htmlString = "";
   if (league.strBadge) {
-    htmlString = `<li class="league-card">
+    htmlString = `<li class="league-card hover-effect">
       <a href="/league_pages/index.html?league=${league.idLeague}">
         <img src="${league.strBadge}" alt="Image of ${league.strLeague}">
         <h2 class="league__name">${league.strLeague}</h2>
