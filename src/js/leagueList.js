@@ -21,10 +21,10 @@ export default class LeagueListing {
   }
 
   async init() {
-    this.renderList(this.leagueList);
+    await this.renderList(this.leagueList);
   }
 
-  renderList(list) {
-    renderListWithTemplate(leagueCardTemplate, this.listElement, list);
+  async renderList(list) {
+    await renderListWithTemplate(leagueCardTemplate, this.listElement, list);
   }
 }

@@ -1,41 +1,33 @@
 import ExternalServices from "./ExternalServices.mjs";
 import LeagueList from "./leagueList.js";
-
-async function getLeaguesByCountry(allLeagues, country) {
-  const dataSource = new ExternalServices();
-  const allLeaguesDetailedData = await Promise.all(
-    allLeagues.map(async (league) => {
-      const leagueData = await dataSource.getLeagueById(league.idLeague);
-      return leagueData;
-    }),
-  );
-
-  const filteredLeaguesByCountry = allLeaguesDetailedData.filter(
-    (league) => league.strCountry && league.strCountry.includes(country),
-  );
-
-  return filteredLeaguesByCountry;
-}
+import { setLocalStorage } from "./utils.mjs";
 
 async function initialize() {
+  // contains the elements to be generated dinamically
   const listElement = document.querySelector(".league-list");
+
+  // gets the selected value from search by country selector
+  const selectElement = document.getElementById("search-by-country");
+  const selectedCountry = selectElement.value;
+
   const dataSource = new ExternalServices();
-  const allSoccerLeagues = await dataSource.getLeaguesBySport("Soccer");
-  const soccerLeaguesByCountry = await getLeaguesByCountry(
-    allSoccerLeagues,
-    "Spain",
-  );
-  const leagueList = new LeagueList(soccerLeaguesByCountry, listElement);
+
+  const leaguesByCountry =
+    await dataSource.getLeaguesByCountry(selectedCountry);
+  setLocalStorage("current-leagues-by-country", leaguesByCountry);
+
+  const leagueList = new LeagueList(leaguesByCountry, listElement);
   leagueList.init();
 
+  // Adding "change" event listener that will regenerate the list of leagues when
+  // the value of select by country selector is changed
   const searchBySelect = document.querySelector("#search-by-country");
-
-  searchBySelect.addEventListener("input", async (e) => {
+  searchBySelect.addEventListener("change", async (e) => {
     const filterLeagueByCountry = e.target.value;
-    const newSoccerLeaguesByCountry = await getLeaguesByCountry(
-      allSoccerLeagues,
+    const newSoccerLeaguesByCountry = await dataSource.getLeaguesByCountry(
       filterLeagueByCountry,
     );
+    setLocalStorage("current-leagues-by-country", newSoccerLeaguesByCountry);
     leagueList.renderList(newSoccerLeaguesByCountry);
   });
 }
