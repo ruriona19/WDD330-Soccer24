@@ -106,9 +106,10 @@ export default class ScheduleList {
     } else {
       roundText.innerHTML = `ROUND ${currentRound}`;
     }
-    // render list of options
-    renderListWithTemplate(matchdaySelectOptionTemplate, matchdaySelect, rounds);
+    // render list of options 
     matchdaySelect.value = currentRound;
+    renderListWithTemplate(matchdaySelectOptionTemplate, matchdaySelect, rounds);
+    
       
     
 

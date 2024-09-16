@@ -1,13 +1,13 @@
 const baseURLV2 = 'https://www.thesportsdb.com/api/v2/json/3/';
 const baseURLV1 = 'https://www.thesportsdb.com/api/v1/json/3/';
 
-function getUniqueIntRoundCount(data) {
-  const uniqueRounds = new Set();
-  data["1"].forEach(event => {
-      uniqueRounds.add(event.intRound);
-  });
-  return uniqueRounds.size;
-}
+// function getUniqueIntRoundCount(data) {
+//   const uniqueRounds = new Set();
+//   data["1"].forEach(event => {
+//       uniqueRounds.add(event.intRound);
+//   });
+//   return uniqueRounds.size;
+// }
 
 async function convertToJson(res) {
   try {
@@ -24,16 +24,35 @@ async function convertToJson(res) {
 }
 
 export default class ExternalServices {
-  async getLeaguesBySport(sport) {
-    try {
-      const response = await fetch(baseURLV2 + "all/leagues");
+  // async getLeaguesBySport(sport) {
+  //   try {
+  //     const response = await fetch(baseURLV1 + "all_leagues.php");
   
+  //     if (!response.ok) {
+  //       throw new Error(`HTTP error! Status: ${response.status}`);
+  //     }
+
+  //     const data = await convertToJson(response);
+  //     const filteredData = data.leagues.filter(item => item.strSport === "Soccer");
+  //     return filteredData;
+
+  //   } catch (error) {
+  //     console.error("Unable to fetch data:", error);
+  //     throw error; 
+  //   }
+  // }
+
+  async getLeaguesByCountry(country) {
+    try {
+      const response = await fetch(baseURLV1 + `search_all_leagues.php?c=${country}&s=Soccer`);
+
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
       const data = await convertToJson(response);
-      const filteredData = data.leagues.filter(item => item.strSport === "Soccer");
+      // TODO: figured out how to avoid using this filter because all leagues are already related to Soccer
+      const filteredData = data.countries.filter(item => item.strSport === "Soccer");
       return filteredData;
 
     } catch (error) {
@@ -44,9 +63,27 @@ export default class ExternalServices {
 
   async getLeagueById(leagueId) {
     try {
-      const response = await fetch(baseURLV2 + `lookup/league/${leagueId}`);
-      const leagueData = await convertToJson(response);
-      return leagueData.leagues[0];
+      //const response = await fetch(baseURLV2 + `lookup/league/${leagueId}`);
+      //const leagueData = await convertToJson(response);
+      let storedArray = JSON.parse(localStorage.getItem('current-leagues-by-country'));
+      if (storedArray && Array.isArray(storedArray)) {
+  
+        // Step 2: Define the value you're searching for
+        const searchValue = leagueId; // Example value you're looking for
+      
+        // Step 3: Find the value in the array (using .find() as an example)
+        const foundValue = storedArray.find(item => item.idLeague === searchValue);
+      
+        // Step 4: Store the result in a variable
+        if (foundValue) {
+          return foundValue;
+        } else {
+          console.log('Value not found.');
+        }
+      
+      } else {
+        console.log('No array found in localStorage.');
+      }
 
     } catch (error) {
       console.error("Unable to fetch leagueData:", error);
@@ -68,9 +105,17 @@ export default class ExternalServices {
 
   async getNumberOfRoundsBySeason(leagueId, season) {
     try {
-      const response = await fetch(baseURLV2 + `schedual/league/${leagueId}/${season}`);
-      const scheduleBySeasonLeagueId = await convertToJson(response);
-      const numberOfRounds = getUniqueIntRoundCount(scheduleBySeasonLeagueId);
+
+      // Get leagueName by leagueId
+      const currentLeague = JSON.parse(localStorage.getItem('current-league-detail'));
+      let currentLeagueName = currentLeague.strLeague;
+      currentLeagueName = currentLeagueName.replaceAll(' ', '%20');
+
+      // Get the list of teams related to a given league name
+      const response = await fetch(baseURLV1 + `search_all_teams.php?l=${currentLeagueName}`);
+      const teamsList = await convertToJson(response);
+
+      const numberOfRounds = (teamsList.teams.length - 1)*2;
       return numberOfRounds;
 
     } catch (error) {
